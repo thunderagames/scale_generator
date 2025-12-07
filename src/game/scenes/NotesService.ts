@@ -14,13 +14,58 @@ export class NotesService {
         { note: 'B', enharmonics: ['Cb', 'A##'] },
     ]
 
+    modesNames: { [key: string]: any } = {
+        'Ionian': {
+            en: 'Ionian',
+            es: 'Jonico'
+        },
+        'Dorian': {
+            en: 'Dorian',
+            es: 'Dorico'
+        },
+        'Phrygian': {
+            en: 'Phrygian',
+            es: 'Frigio'
+        },
+        'Lydian': {
+            en: 'Lydian',
+            es: 'Lidio'
+        },
+        'Mixolydian': {
+            en: 'Mixolydian',
+            es: 'Mixolidio'
+        },
+        'Aeolian': {
+            en: 'Aeolian',
+            es: 'Eolico'
+        },
+        'Locrian': {
+            en: 'Locrian',
+            es: 'Locrio'
+        }
+    }
     modes: string[] = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Aeolian', 'Locrian'];
     IonianIntervals: number[] = [2, 2, 1, 2, 2, 2, 1];
+    accidentals: string[] = ['', '#', 'b']
+    accidentalsNames: { [key: string]: any } = {
+        '': {
+            en: 'Natural',
+            es: 'Natural'
+        },
+        '#': {
+            en: 'Sharp (#)',
+            es: 'Sostenido (#)'
+        },
+        'b': {
+            en: 'Bemol (b)',
+            es: 'Bemol (b)'
+        }
+    }
 
 
     getModeIntervals(mode: string): number[] {
         const result: number[] = []
-        const modeIndex = this.modes.findIndex(x => x == mode);
+        const modeIndex = this.modes.findIndex((x: any) => x == mode);
         for (let i = modeIndex; i < 7; i++) {
             result.push(this.IonianIntervals[i])
         }
