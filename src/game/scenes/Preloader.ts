@@ -67,18 +67,19 @@ export class Preloader extends Scene {
         this.load.audio({ key: 'B', url: ['notes/B.ogg'] })
 
         //ionian scales
-        this.load.audio({ key: 'ionian_C', url: ['ionian_scales/C.ogg'] })
-        this.load.audio({ key: 'ionian_C#', url: ['ionian_scales/Cs.ogg'] })
-        this.load.audio({ key: 'ionian_D', url: ['ionian_scales/D.ogg'] })
-        this.load.audio({ key: 'ionian_D#', url: ['ionian_scales/Ds.ogg'] })
-        this.load.audio({ key: 'ionian_E', url: ['ionian_scales/E.ogg'] })
-        this.load.audio({ key: 'ionian_F', url: ['ionian_scales/F.ogg'] })
-        this.load.audio({ key: 'ionian_F#', url: ['ionian_scales/Fs.ogg'] })
-        this.load.audio({ key: 'ionian_G', url: ['ionian_scales/G.ogg'] })
-        this.load.audio({ key: 'ionian_G#', url: ['ionian_scales/Gs.ogg'] })
-        this.load.audio({ key: 'ionian_A', url: ['ionian_scales/A.ogg'] })
-        this.load.audio({ key: 'ionian_A#', url: ['ionian_scales/As.ogg'] })
-        this.load.audio({ key: 'ionian_B', url: ['ionian_scales/B.ogg'] })
+        this.load.audio({ key: 'ionian', url: ['ionian_scale.opus'] })
+        // this.load.audio({ key: 'ionian_C', url: ['ionian_scales/C.ogg'] })
+        // this.load.audio({ key: 'ionian_C#', url: ['ionian_scales/Cs.ogg'] })
+        // this.load.audio({ key: 'ionian_D', url: ['ionian_scales/D.ogg'] })
+        // this.load.audio({ key: 'ionian_D#', url: ['ionian_scales/Ds.ogg'] })
+        // this.load.audio({ key: 'ionian_E', url: ['ionian_scales/E.ogg'] })
+        // this.load.audio({ key: 'ionian_F', url: ['ionian_scales/F.ogg'] })
+        // this.load.audio({ key: 'ionian_F#', url: ['ionian_scales/Fs.ogg'] })
+        // this.load.audio({ key: 'ionian_G', url: ['ionian_scales/G.ogg'] })
+        // this.load.audio({ key: 'ionian_G#', url: ['ionian_scales/Gs.ogg'] })
+        // this.load.audio({ key: 'ionian_A', url: ['ionian_scales/A.ogg'] })
+        // this.load.audio({ key: 'ionian_A#', url: ['ionian_scales/As.ogg'] })
+        // this.load.audio({ key: 'ionian_B', url: ['ionian_scales/B.ogg'] })
     }
 
     create() {

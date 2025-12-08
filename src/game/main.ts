@@ -1,3 +1,4 @@
+
 import { Boot } from './scenes/Boot';
 import { GameOver } from './scenes/GameOver';
 import { Game as MainGame } from './scenes/Game';
@@ -10,14 +11,14 @@ import { Preloader } from './scenes/Preloader';
 const config: Phaser.Types.Core.GameConfig = {
     type: AUTO,
     width: 720,
-    height: 900,
+    height: 950,
     parent: 'game-container',
     backgroundColor: '#028af8',
     dom: {
         createContainer: true
     },
     scale: {
-        //mode: Phaser.Scale.ScaleModes.FIT,
+        mode: Phaser.Scale.ScaleModes.NONE,
         autoCenter: Phaser.Scale.Center.CENTER_BOTH,
        // autoRound: true
     },
