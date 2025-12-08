@@ -18,7 +18,7 @@ const config: Phaser.Types.Core.GameConfig = {
         createContainer: true
     },
     scale: {
-        mode: Phaser.Scale.ScaleModes.NONE,
+        mode: Phaser.Scale.ScaleModes.FIT,
         autoCenter: Phaser.Scale.Center.CENTER_BOTH,
        // autoRound: true
     },

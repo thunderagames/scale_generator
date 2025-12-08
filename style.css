@@ -1,0 +1,28 @@
+#game-container {
+    /* * CRITICAL STEP 1: Constrain the maximum size of the container. 
+     * This prevents the container from growing indefinitely on desktop.
+     */
+    max-width: 100%;
+    /* Ensures it never exceeds the viewport width */
+    max-height: 100vh;
+    /* Ensures it never exceeds the viewport height (vh = viewport height) */
+
+    /* * Optional but Recommended: Center the container in the page.
+     */
+    margin: 0 auto;
+
+    /* Ensures the body and html tags also fill the screen for responsive scaling */
+    overflow: hidden;
+}
+
+/* Also ensure the root HTML elements are set up correctly */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* Important: makes max-height work on #game-container */
+    width: 100%;
+    /* Important: makes max-width work on #game-container */
+    overflow: hidden;
+}

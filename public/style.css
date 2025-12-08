@@ -14,3 +14,20 @@
     justify-content: center;
     align-items: center;
 } */
+
+ #game-container {
+     /* * CRITICAL STEP 1: Constrain the maximum size of the container. 
+     * This prevents the container from growing indefinitely on desktop.
+     */
+     max-width: 720px;
+     /* Ensures it never exceeds the viewport width */
+     max-height: 950px;
+     /* Ensures it never exceeds the viewport height (vh = viewport height) */
+
+     /* * Optional but Recommended: Center the container in the page.
+     */
+     margin: 0 auto;
+
+     /* Ensures the body and html tags also fill the screen for responsive scaling */
+     overflow: hidden;
+ }
