@@ -6,32 +6,90 @@ export class MainMenu extends Scene {
     selectedMode = ''
     selectedAccidentals = ''
     selectedScaleNote: Phaser.GameObjects.Text;
-    generatedScale: Phaser.GameObjects.Text;
     oscillator: OscillatorNode;
     notesService = new NotesService()
     intervalsText: Phaser.GameObjects.Text;
-
+    scaleGroup = new Phaser.GameObjects.Group(this)
     constructor() {
         super('MainMenu');
     }
 
+    getRomanNum(num: number): string {
+        switch (num) {
+            case 1:
+                return 'I'
+
+            case 2:
+                return 'II'
+            case 3:
+                return 'III'
+            case 4:
+                return 'IV'
+            case 5:
+                return 'V'
+            case 6:
+                return 'VI'
+            case 7:
+                return 'VII'
+            case 8:
+                return 'VIII'
+            default:
+                return '';
+        }
+    }
+
     create() {
         this.selectedScaleNote = this.add.text(100, 250, '');
-        this.intervalsText = this.add.text((this.scale.width / 2), this.scale.height / 2, '', { fontSize: 30, color: '#000' }).setOrigin(0.5).setDepth(10)
-        this.generatedScale = this.add.text((this.scale.width / 2), this.scale.height / 2 + 50, '', { fontSize: 30, fontStyle: 'bold', color: '#000' }).setOrigin(0.5).setDepth(10)
+        let intervalsTitle = this.add.text(100, this.scale.height / 2 - 10, 'Semitone intervals', { fontFamily: 'arial black', color: '#000', fontSize: 24 })
+            .setDepth(20)
+            .setOrigin(0)
+            .setVisible(false)
+            .setAlpha(0.5)
+
+        this.intervalsText = this.add.text((this.scale.width / 2), this.scale.height / 2 + 50, '', { fontSize: 32, color: '#000', fontFamily: 'arial black' }).setOrigin(0.5).setDepth(10)
 
         this.printNotes()
         this.printModes()
         this.printAccidentals()
         this.createGenerationZone()
 
+        let start_x = 135;
+        for (let i = 0; i < 8; i++) {
+
+            this.add.rectangle(start_x, this.scale.height / 2 + 100, 64, 64, 0x000000, 0.3)
+                .setInteractive()
+                .on(Phaser.Input.Events.POINTER_DOWN, () => {
+                    // this.sound.play(note)
+                }).setScale(1)
+
+            this.add.text(start_x, this.scale.height / 2 + 150, this.getRomanNum(i + 1), { fontFamily: 'arial black', color: '#000' }).setOrigin(0.5)
+            start_x += 65
+        }
+
+        //})
+
+
         this.add.rectangle(this.scale.width / 2, this.scale.height - 100, 200, 100, 0xFFFFFF, 1).setInteractive().on(Phaser.Input.Events.POINTER_DOWN, () => {
             const scale = this.notesService.getDiatonicBaseScale(this.selectedNote)
             const intervals = this.notesService.getModeIntervals(this.selectedMode)
-
-            this.intervalsText.setText(intervals.join('  '))
+            intervalsTitle.setVisible(true)
+            this.intervalsText.setText(intervals.join('    '))
+            this.scaleGroup.clear(true, true)
+            let start_x = 135;
             this.notesService.addEnharmonicsToBaseScale(this.selectedAccidentals, scale, intervals)
-            this.generatedScale.setText(scale.join('  '))
+            scale.forEach(note => {
+                const t =
+                    this.add.image(start_x, this.scale.height / 2 + 100, note)
+                        .setInteractive()
+                        .on(Phaser.Input.Events.POINTER_DOWN, () => {
+                            // this.sound.play(note)
+                        }).setScale(0.8)
+                        .setAlpha(0.8)
+                this.scaleGroup.add(t)
+                start_x += 65
+            })
+
+            //this.generatedScale.setText(scale.join('  '))
             this.sound.stopAll()
 
             this.sound.play(`${this.selectedMode}_${this.notesService.scaleToPlay}`, { volume: 0.5, rate: 1 })
