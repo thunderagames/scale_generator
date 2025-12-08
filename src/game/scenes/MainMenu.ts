@@ -18,7 +18,6 @@ export class MainMenu extends Scene {
         switch (num) {
             case 1:
                 return 'I'
-
             case 2:
                 return 'II'
             case 3:
@@ -46,7 +45,7 @@ export class MainMenu extends Scene {
             .setVisible(false)
             .setAlpha(0.5)
 
-        this.intervalsText = this.add.text((this.scale.width / 2), this.scale.height / 2 + 50, '', { fontSize: 32, color: '#000', fontFamily: 'arial black' }).setOrigin(0.5).setDepth(10)
+        //this.intervalsText = this.add.text((this.scale.width / 2), this.scale.height / 2 + 50, '', { fontSize: 32, color: '#000', fontFamily: 'arial black' }).setOrigin(0.5).setDepth(10)
 
         this.printNotes()
         this.printModes()
@@ -73,7 +72,12 @@ export class MainMenu extends Scene {
             const scale = this.notesService.getDiatonicBaseScale(this.selectedNote)
             const intervals = this.notesService.getModeIntervals(this.selectedMode)
             intervalsTitle.setVisible(true)
-            this.intervalsText.setText(intervals.join('    '))
+            //this.intervalsText.setText(intervals.join('    '))
+            let interval_start_x = 155
+            intervals.forEach(i => {
+                this.add.text(interval_start_x, this.scale.height / 2 + 30, `${i}`, { fontSize: 32, color: '#000', fontFamily: 'arial black' })
+                interval_start_x += 66
+            })
             this.scaleGroup.clear(true, true)
             let start_x = 135;
             this.notesService.addEnharmonicsToBaseScale(this.selectedAccidentals, scale, intervals)
@@ -96,7 +100,7 @@ export class MainMenu extends Scene {
 
 
         }).setOrigin(0.5);
-        this.add.text(this.scale.width / 2, this.scale.height - 100, 'Generate Scale', { color: '#000', fontSize: 20, fontStyle: 'bold' }).setOrigin(0.5)
+        this.add.text(this.scale.width / 2, this.scale.height - 100, 'Generate Scale', { color: '#000', fontSize: 20, fontStyle: 'bold', fontFamily: 'arial black' }).setOrigin(0.5)
     }
 
 
