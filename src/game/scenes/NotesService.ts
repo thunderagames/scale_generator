@@ -15,36 +15,36 @@ export class NotesService {
     ]
 
     modesNames: { [key: string]: any } = {
-        'Ionian': {
+        'ionian': {
             en: 'Ionian',
             es: 'Jonico'
         },
-        'Dorian': {
+        'dorian': {
             en: 'Dorian',
             es: 'Dorico'
         },
-        'Phrygian': {
+        'phrygian': {
             en: 'Phrygian',
             es: 'Frigio'
         },
-        'Lydian': {
+        'lydian': {
             en: 'Lydian',
             es: 'Lidio'
         },
-        'Mixolydian': {
+        'mixolydian': {
             en: 'Mixolydian',
             es: 'Mixolidio'
         },
-        'Aeolian': {
+        'aeolian': {
             en: 'Aeolian',
             es: 'Eolico'
         },
-        'Locrian': {
+        'locrian': {
             en: 'Locrian',
             es: 'Locrio'
         }
     }
-    modes: string[] = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Aeolian', 'Locrian'];
+    modes: string[] = ['ionian', 'dorian', 'phrygian', 'lydian', 'mixolydian', 'aeolian', 'locrian'];
     IonianIntervals: number[] = [2, 2, 1, 2, 2, 2, 1];
     accidentals: string[] = ['', '#', 'b']
     accidentalsNames: { [key: string]: any } = {
@@ -62,6 +62,7 @@ export class NotesService {
         }
     }
 
+    scaleToPlay: string = ''
 
     getModeIntervals(mode: string): number[] {
         const result: number[] = []
@@ -104,7 +105,9 @@ export class NotesService {
     }
 
     addEnharmonicsToBaseScale(modificator: string, baseScale: string[], intervals: number[]) {
+
         baseScale[0] = baseScale[0] + modificator
+        this.scaleToPlay = this.cromaticScale.find(x => x.note == baseScale[0] || x.enharmonics.includes(baseScale[0]))?.note ?? ''
 
         let cromaticScaleIndex = this.cromaticScale.findIndex(x => x.note == baseScale[0]);
         if (cromaticScaleIndex == -1) {
@@ -127,6 +130,7 @@ export class NotesService {
         }
 
         for (let i = 1; i < 8; i++) {
+
             const baseNote = baseScale[i];
             const diatonicNote = diatonicBase[i]
             if (baseNote != diatonicNote.note) {

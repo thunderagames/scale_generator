@@ -32,6 +32,11 @@ export class MainMenu extends Scene {
             this.intervalsText.setText(intervals.join('  '))
             this.notesService.addEnharmonicsToBaseScale(this.selectedAccidentals, scale, intervals)
             this.generatedScale.setText(scale.join('  '))
+            this.sound.stopAll()
+
+            this.sound.play(`${this.selectedMode}_${this.notesService.scaleToPlay}`, { volume: 0.5, rate: 1 })
+
+
         }).setOrigin(0.5);
         this.add.text(this.scale.width / 2, this.scale.height - 100, 'Generate Scale', { color: '#000', fontSize: 20, fontStyle: 'bold' }).setOrigin(0.5)
     }
@@ -53,6 +58,7 @@ export class MainMenu extends Scene {
                         })
                         this.selectedNote = note;
                         (t as Phaser.GameObjects.Image).setAlpha(0.3)
+                        this.sound.play(note)
                     }).setScale(1)
             notesGroup.add(t)
             start_x += 80
